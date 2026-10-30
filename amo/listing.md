@@ -13,7 +13,7 @@ Text to paste into the Developer Hub at https://addons.mozilla.org/developers/ w
 | URL slug | `auto-bcc-myself-for-gmail` |
 | Category | Social & Communication |
 | License | MIT |
-| Privacy policy | Not needed: the add-on collects nothing, and the manifest declares that |
+| Privacy policy | None. Leave the field empty: the add-on collects and sends nothing, and the manifest declares that. |
 | Homepage | https://github.com/semicolonconsulting/autobccmyself |
 | Support website | https://github.com/semicolonconsulting/autobccmyself/issues |
 | Support email | Optional. It's shown publicly. |
@@ -68,6 +68,11 @@ First public release.
 
 ## Notes to reviewer
 
-To test: sign in to any Gmail account at https://mail.google.com and click Compose. The Bcc field opens and the signed-in address is added as a recipient chip. Then open a conversation and click Reply: the collapsed recipient line shows "1 Bcc". The toolbar popup has an on/off switch and an optional fixed Bcc address.
+How to test:
+1. Sign in to any Gmail account at https://mail.google.com and click Compose. The Bcc field opens and the signed-in address appears in it as a recipient chip.
+2. Open a conversation and click Reply. The collapsed recipient line shows "1 Bcc"; click it to see the address in the Bcc field.
+3. Click the toolbar button. The popup has an on/off switch and an optional fixed Bcc address. With the switch off, new compose windows are left alone.
 
-The package has no build step and no minified or third-party code; every file is included as written. The content script only reads and edits Gmail's compose form in the page, and the add-on makes no network requests.
+How it works: the content script runs only on mail.google.com. When a compose form appears, it opens the Bcc field, types the address with document.execCommand('insertText') and dispatches an Enter keydown so Gmail turns the text into a recipient chip. It doesn't inject scripts into the page, makes no network requests and collects no data. The only storage is the two settings in storage.local.
+
+The package has no build step and no minified or third-party code; every file is included as written. Source: https://github.com/semicolonconsulting/autobccmyself
