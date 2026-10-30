@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Auto BCC Myself for Gmail</title>
+  <style>
+    :root {
+      --bg: #fff;
+      --text: #202124;
+      --muted: #5f6368;
+      --line: #dadce0;
+      --accent: #1a73e8;
+      --error: #d93025;
+      --ok: #188038;
+      color-scheme: light dark;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #2b2a33;
+        --text: #e8eaed;
+        --muted: #9aa0a6;
+        --line: #5f6368;
+        --accent: #8ab4f8;
+        --error: #f28b82;
+        --ok: #81c995;
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; }
+
+    body {
+      width: 300px;
+      padding: 16px;
+      font: 13px/1.4 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    h1 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .field {
+      padding: 10px 0 0;
+      border-top: 1px solid var(--line);
+    }
+
+    label { display: block; }
+
+    .field label {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 7px 9px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font: inherit;
+      color: inherit;
+      background: transparent;
+    }
+
+    input[type="email"]:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: -1px;
+      border-color: transparent;
+    }
+
+    .switch { position: relative; width: 36px; height: 20px; flex: none; }
+    .switch input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+    .slider {
+      position: absolute;
+      inset: 0;
+      background: var(--line);
+      border-radius: 10px;
+      pointer-events: none;
+      transition: background 0.15s;
+    }
+    .slider::before {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      left: 3px;
+      top: 3px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.15s;
+    }
+    .switch input:checked + .slider { background: var(--accent); }
+    .switch input:checked + .slider::before { transform: translateX(16px); }
+    .switch input:focus-visible + .slider { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    .status { min-height: 16px; margin-top: 6px; font-size: 12px; color: var(--ok); }
+    .status.error { color: var(--error); }
+  </style>
+</head>
+<body>
+  <h1>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+      <polyline points="22,6 12,13 2,6"/>
+    </svg>
+    Auto BCC Myself for Gmail
+  </h1>
+
+  <div class="row">
+    <label for="enabled">Add me as Bcc in Gmail</label>
+    <span class="switch">
+      <input type="checkbox" id="enabled" checked>
+      <span class="slider"></span>
+    </span>
+  </div>
+
+  <div class="field">
+    <label for="email">Bcc address</label>
+    <input type="email" id="email" placeholder="The Gmail account you're using" autocomplete="email">
+    <p class="hint">Leave empty to use whichever Gmail account the tab is signed in to. Changes apply to compose windows you open next.</p>
+    <p class="status" id="status" role="status"></p>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

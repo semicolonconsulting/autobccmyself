@@ -1,0 +1,41 @@
+{
+  "manifest_version": 2,
+  "name": "Auto BCC Myself for Gmail",
+  "version": "2.0.0",
+  "description": "Adds your own address as Bcc to every Gmail message you write, so threads you send stay in your inbox.",
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "auto-bcc-myself@semicolon.consulting",
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    },
+    "gecko_android": {
+      "strict_min_version": "142.0"
+    }
+  },
+
+  "permissions": ["storage"],
+
+  "content_scripts": [
+    {
+      "matches": ["https://mail.google.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "Auto BCC Myself for Gmail",
+    "default_icon": "icon.svg"
+  },
+
+  "icons": {
+    "48": "icon48.png",
+    "96": "icon96.png",
+    "128": "icon128.png"
+  }
+}
