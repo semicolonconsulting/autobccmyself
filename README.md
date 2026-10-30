@@ -1,54 +1,59 @@
-# Auto BCC Myself for Gmail
+<img src="./extension/icon.svg" width="100px" align="left">
 
-A Firefox add-on that adds your own address as Bcc to every Gmail message you write, so threads you send stay in your inbox.
+### `Auto BCC Myself for Gmail`
 
-Gmail files the messages you send under Sent only. If you're waiting for a reply, the thread drops out of sight until someone answers. With yourself in Bcc, a copy lands in your inbox and the thread stays in front of you.
+[![Firefox Add-on](https://img.shields.io/amo/v/auto-bcc-myself-for-gmail?label=Firefox%20Add-on&logo=firefoxbrowser&logoColor=white&color=1a73e8)](https://addons.mozilla.org/firefox/addon/auto-bcc-myself-for-gmail/)
+[![Users](https://img.shields.io/amo/users/auto-bcc-myself-for-gmail?color=1a73e8)](https://addons.mozilla.org/firefox/addon/auto-bcc-myself-for-gmail/)
+[![License](https://img.shields.io/github/license/semicolonconsulting/autobccmyself?color=1a73e8)](./LICENSE)
 
-**Install:** [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/auto-bcc-myself-for-gmail/). It also works in Firefox-based browsers that use the same store, such as Zen.
+A Firefox add-on that adds you as Bcc on every Gmail message you write, so threads you send stay in your inbox.
 
-## What it does
+<div flex="true">
+  <a href="https://addons.mozilla.org/firefox/addon/auto-bcc-myself-for-gmail/">
+    Install
+  </a>
+  •
+  <a href="./docs/development.md">
+    How it works
+  </a>
+  •
+  <a href="./PRIVACY.md">
+    Privacy
+  </a>
+  •
+  <a href="https://github.com/semicolonconsulting/autobccmyself/issues">
+    Report a problem
+  </a>
+</div>
 
-- When you open a compose window (new message, reply, reply all or forward), it opens the Bcc field and adds your address.
-- The Bcc is visible right away, so you can remove it from any message before you send.
-- It skips messages where you're already in To, Cc or Bcc.
-- By default it uses the Gmail account you're signed in to, read from the tab title, so delegated mailboxes work too. To always use another address, set it in the toolbar popup. You can also switch the add-on off there.
+<br>
 
-## Privacy
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./docs/assets/preview-dark.svg">
+  <img alt="A Gmail compose window with your own address added to Bcc automatically, and the sent thread staying at the top of the inbox." src="./docs/assets/preview-light.svg">
+</picture>
 
-Everything happens in your browser. The add-on collects and sends no data and makes no network requests. It stores only its two settings (on/off and the optional Bcc address) in the browser's local extension storage.
+### Why
 
-Permissions: it runs on `mail.google.com` only, and `storage` saves the settings.
+Gmail files the messages you send under Sent only, so a thread you're waiting on drops out of sight until someone replies. With yourself in Bcc, a copy lands in your inbox and the thread stays in front of you.
 
-## How it works
+### What it does
 
-The content script edits Gmail's compose form directly. It finds the fields with hooks that don't depend on Gmail's display language:
+- Opens the Bcc field in every compose window (new message, reply, reply all and forward) and adds your address.
+- Shows the Bcc right away, so you can remove it from any message before you send.
+- Skips messages where you're already in To, Cc or Bcc.
+- Uses the Gmail account you're signed in to, or a fixed address you set in the toolbar popup. The popup also has an on/off switch.
 
-| Hook | What it is |
-|---|---|
-| `form` containing `input[name="composeid"]` | each compose window |
-| `div[name="to"]`, `div[name="cc"]`, `div[name="bcc"]` | the recipient fields |
-| `span.pB[role="link"]` | the "Bcc" link that opens the field |
-| `.aoD.hl` | the collapsed recipient line on replies (focusing it expands the fields) |
-| `[data-hovercard-id]` | recipient chips (the value is the email address) |
+Works in Firefox 140 and later, and in Firefox-based browsers that install from the same store, such as Zen.
 
-It types the address with `document.execCommand('insertText')` and then sends Enter, which turns the text into a recipient chip. It doesn't inject scripts into the page: Gmail's Content Security Policy requires Trusted Types, which blocks that.
+### Privacy
 
-Gmail's class names can change without notice. If the add-on stops adding the Bcc, [open an issue](https://github.com/semicolonconsulting/autobccmyself/issues). `extension/content.js` is the only file that should need changes.
+Everything stays in your browser. The add-on collects no data and makes no network requests. See the [privacy policy](./PRIVACY.md).
 
-## Build from source
+### Contributing
 
-Needs Node.js (for Mozilla's `web-ext` linter) and `zip`.
+Gmail changes its page from time to time. If the add-on stops adding the Bcc, please report it on the [Issues page](https://github.com/semicolonconsulting/autobccmyself/issues). To build it or change the code, see [docs/development.md](./docs/development.md).
 
-```bash
-./build.sh
-```
+### License
 
-It lints the add-on and writes `dist/auto-bcc-myself-<version>.xpi`. To try a change without installing, open `about:debugging` → **This Firefox** → **Load Temporary Add-on…** and pick `extension/manifest.json`.
-
-`amo/listing.md` holds the store listing text in English and Japanese.
-
-## License
-
-[MIT](LICENSE)
-
-Not affiliated with Google. Gmail is a trademark of Google LLC.
+[MIT](./LICENSE). Not affiliated with Google. Gmail is a trademark of Google LLC.
