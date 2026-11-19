@@ -6,11 +6,15 @@
 [![Users](https://img.shields.io/amo/users/auto-bcc-myself-for-gmail?color=1a73e8)](https://addons.mozilla.org/firefox/addon/auto-bcc-myself-for-gmail/)
 [![License](https://img.shields.io/github/license/semicolonconsulting/autobccmyself?color=1a73e8)](./LICENSE)
 
-A Firefox add-on and Chrome extension that adds you as Bcc on every Gmail message you write, so threads you send stay in your inbox.
+A browser extension for Firefox and Chrome that adds you as Bcc on every Gmail message you write, so threads you send stay in your inbox.
 
 <div flex="true">
   <a href="https://addons.mozilla.org/firefox/addon/auto-bcc-myself-for-gmail/">
-    Install
+    Install for Firefox
+  </a>
+  •
+  <a href="#install">
+    Install for Chrome
   </a>
   •
   <a href="./docs/development.md">
@@ -44,15 +48,20 @@ Gmail files the messages you send under Sent only, so a thread you're waiting on
 - Skips messages where you're already in To, Cc or Bcc.
 - Uses the Gmail account you're signed in to, or a fixed address you set in the toolbar popup. The popup also has an on/off switch.
 
-Works in Firefox 140 and later, and in Firefox-based browsers that install from the same store, such as Zen. A Chrome version (Manifest V3) is built from the same code; until it's in the Chrome Web Store, load it unpacked as described in [docs/development.md](./docs/development.md#try-a-change).
+### Install
+
+- **Firefox** 140 and later, and Firefox-based browsers such as Zen: install it from [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/auto-bcc-myself-for-gmail/).
+- **Chrome**: coming to the Chrome Web Store soon. Until then, build it with `./build.sh chrome` and load `dist/chrome/` unpacked, as described in [docs/development.md](./docs/development.md#try-a-change).
+
+Both versions are built from the same code and work the same way.
 
 ### Privacy
 
-Everything stays in your browser. The add-on collects no data and makes no network requests. See the [privacy policy](./PRIVACY.md).
+Everything stays in your browser. The extension collects no data and makes no network requests. See the [privacy policy](./PRIVACY.md).
 
 ### Contributing
 
-Gmail changes its page from time to time. If the add-on stops adding the Bcc, please report it on the [Issues page](https://github.com/semicolonconsulting/autobccmyself/issues). To build it or change the code, see [docs/development.md](./docs/development.md).
+Gmail changes its page from time to time. If the extension stops adding the Bcc, please report it on the [Issues page](https://github.com/semicolonconsulting/autobccmyself/issues). To build it or change the code, see [docs/development.md](./docs/development.md).
 
 ### License
 
