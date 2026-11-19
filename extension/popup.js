@@ -1,17 +1,20 @@
 'use strict';
 
+// Firefox has browser.*, Chrome only chrome.*. Both return promises here.
+const api = globalThis.browser ?? globalThis.chrome;
+
 const enabledInput = document.getElementById('enabled');
 const emailInput = document.getElementById('email');
 const statusEl = document.getElementById('status');
 let statusTimer = 0;
 
-browser.storage.local.get(['enabled', 'bccEmail']).then(stored => {
+api.storage.local.get(['enabled', 'bccEmail']).then(stored => {
   enabledInput.checked = stored.enabled !== false;
   emailInput.value = stored.bccEmail || '';
 });
 
 enabledInput.addEventListener('change', () => {
-  browser.storage.local.set({ enabled: enabledInput.checked });
+  api.storage.local.set({ enabled: enabledInput.checked });
 });
 
 // Saves when the field loses focus or on Enter.
@@ -21,7 +24,7 @@ emailInput.addEventListener('change', () => {
     showStatus('That doesn’t look like an email address.', true);
     return;
   }
-  browser.storage.local.set({ bccEmail: email }).then(() => {
+  api.storage.local.set({ bccEmail: email }).then(() => {
     showStatus(email ? `Saved. Bcc goes to ${email}.` : 'Saved. Bcc goes to the signed-in account.');
   });
 });

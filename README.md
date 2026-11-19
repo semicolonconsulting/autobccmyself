@@ -6,7 +6,7 @@
 [![Users](https://img.shields.io/amo/users/auto-bcc-myself-for-gmail?color=1a73e8)](https://addons.mozilla.org/firefox/addon/auto-bcc-myself-for-gmail/)
 [![License](https://img.shields.io/github/license/semicolonconsulting/autobccmyself?color=1a73e8)](./LICENSE)
 
-A Firefox add-on that adds you as Bcc on every Gmail message you write, so threads you send stay in your inbox.
+A Firefox add-on and Chrome extension that adds you as Bcc on every Gmail message you write, so threads you send stay in your inbox.
 
 <div flex="true">
   <a href="https://addons.mozilla.org/firefox/addon/auto-bcc-myself-for-gmail/">
@@ -44,7 +44,7 @@ Gmail files the messages you send under Sent only, so a thread you're waiting on
 - Skips messages where you're already in To, Cc or Bcc.
 - Uses the Gmail account you're signed in to, or a fixed address you set in the toolbar popup. The popup also has an on/off switch.
 
-Works in Firefox 140 and later, and in Firefox-based browsers that install from the same store, such as Zen.
+Works in Firefox 140 and later, and in Firefox-based browsers that install from the same store, such as Zen. A Chrome version (Manifest V3) is built from the same code; until it's in the Chrome Web Store, load it unpacked as described in [docs/development.md](./docs/development.md#try-a-change).
 
 ### Privacy
 

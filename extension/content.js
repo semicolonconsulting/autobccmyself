@@ -9,6 +9,9 @@
 // DOM straight from the content script. Version 1.0 injected a <script> into
 // the page instead, which Gmail's Trusted Types CSP blocks without an error.
 
+// Firefox has browser.*, Chrome only chrome.*. Both return promises here.
+const api = globalThis.browser ?? globalThis.chrome;
+
 const settings = { enabled: true, bccEmail: '' };
 const handled = new WeakSet();
 const EMAIL = /[\w.!#$%&'*+/=?^`{|}~-]+@[\w-]+(?:\.[\w-]+)+/g;
@@ -17,14 +20,14 @@ const EMAIL = /[\w.!#$%&'*+/=?^`{|}~-]+@[\w-]+(?:\.[\w-]+)+/g;
 let queue = Promise.resolve();
 let scanTimer = 0;
 
-browser.storage.local.get(['enabled', 'bccEmail']).then(stored => {
+api.storage.local.get(['enabled', 'bccEmail']).then(stored => {
   settings.enabled = stored.enabled !== false;
   settings.bccEmail = stored.bccEmail || '';
   new MutationObserver(scheduleScan).observe(document.body, { childList: true, subtree: true });
   scan();
 });
 
-browser.storage.onChanged.addListener(changes => {
+api.storage.onChanged.addListener(changes => {
   if (changes.enabled) settings.enabled = changes.enabled.newValue !== false;
   if (changes.bccEmail) settings.bccEmail = changes.bccEmail.newValue || '';
 });
