@@ -3,6 +3,7 @@
 ### `Auto BCC Myself for Gmail`
 
 [![Firefox Add-on](https://img.shields.io/amo/v/auto-bcc-myself-for-gmail?label=Firefox%20Add-on&logo=firefoxbrowser&logoColor=white&color=1a73e8)](https://addons.mozilla.org/firefox/addon/auto-bcc-myself-for-gmail/)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/fekkofflkcfomlnaionbbdenlljdiadd?label=Chrome%20Web%20Store&logo=googlechrome&logoColor=white&color=1a73e8)](https://chromewebstore.google.com/detail/auto-bcc-myself-for-gmail/fekkofflkcfomlnaionbbdenlljdiadd)
 [![Users](https://img.shields.io/amo/users/auto-bcc-myself-for-gmail?color=1a73e8)](https://addons.mozilla.org/firefox/addon/auto-bcc-myself-for-gmail/)
 [![License](https://img.shields.io/github/license/semicolonconsulting/autobccmyself?color=1a73e8)](./LICENSE)
 
@@ -13,7 +14,7 @@ A browser extension for Firefox and Chrome that adds you as Bcc on every Gmail m
     Install for Firefox
   </a>
   •
-  <a href="#install">
+  <a href="https://chromewebstore.google.com/detail/auto-bcc-myself-for-gmail/fekkofflkcfomlnaionbbdenlljdiadd">
     Install for Chrome
   </a>
   •
@@ -51,7 +52,7 @@ Gmail files the messages you send under Sent only, so a thread you're waiting on
 ### Install
 
 - **Firefox** 140 and later, and Firefox-based browsers such as Zen: install it from [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/auto-bcc-myself-for-gmail/).
-- **Chrome**: coming to the Chrome Web Store soon. Until then, build it with `./build.sh chrome` and load `dist/chrome/` unpacked, as described in [docs/development.md](./docs/development.md#try-a-change).
+- **Chrome** 102 and later: install it from the [Chrome Web Store](https://chromewebstore.google.com/detail/auto-bcc-myself-for-gmail/fekkofflkcfomlnaionbbdenlljdiadd). Other Chromium browsers that use the Chrome Web Store, such as Brave and Arc, can install it from there too.
 
 Both versions are built from the same code and work the same way.
 
